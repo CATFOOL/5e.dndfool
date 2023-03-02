@@ -1,0 +1,10 @@
+{
+  "livePreview": false,
+  "strictLineBreaks": true,
+  "showFrontmatter": false,
+  "showLineNumber": false,
+  "showIndentGuide": true,
+  "rightToLeft": false,
+  "readableLineLength": true,
+  "autoConvertHtml": true
+}

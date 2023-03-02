@@ -1,0 +1,231 @@
+@use "dnd-color-scheme" as cs;
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar_menu_button{
+  color: white;
+  font-size: 16px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: stretch;
+  height: fit-content;
+  cursor: pointer;
+  @media (min-width: 520px) {
+    display: none;
+    align-items: center;
+  }
+}
+
+.navbar-container{
+  display: flex;
+  width: 100%;
+  background-color: cs.$nav_bg;
+  border-bottom: 1px solid cs.$red;
+  @media (max-width: 520px) {
+    justify-content: flex-start;
+  }
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  background-color: cs.$nav_bg;
+  justify-content: center;
+  @media (max-width: 520px) {
+    display: none;
+    width: 80%;
+    flex-direction: column;
+  }
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    background-color: cs.$nav_highlight;
+  }
+  @media (max-width: 520px) {
+    text-align: left;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin: 5px 10px;
+    font-size: 14px;
+    padding: 7px 8px;
+  }
+}
+
+.nav-dropdown {
+  float: left;
+  overflow: hidden;
+  .nav-dropdown-btn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+    margin: 0;
+    width: 100%;
+    &:focus {
+      background-color: cs.$nav_highlight;
+    }
+    &:focus + .nav-dropdown-content {
+      display: flex;
+    }
+    @media (max-width: 520px) {
+      text-align: left;
+      font-size: 14px;
+      padding: 7px 8px;
+    }
+  }
+  &:hover .nav-dropdown-btn {
+    background-color: cs.$nav_highlight;
+  }
+  @media (max-width: 520px) {
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin: 5px 10px;
+  }
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  align-items: flex-start;
+  border-top: 1px solid cs.$red;
+  background-color: cs.$nav_bg;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(72, 72, 72, 0.2);
+  z-index: 2;
+  flex-direction: column;
+  @media (max-width: 520px) {
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+  &:hover{
+    display: flex;
+  }
+  a {
+    float: none;
+    color: white;
+    padding: 7px 16px;
+    text-decoration: none;
+    display: flex;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+    border-radius: 0 !important;
+    border: 0 !important;
+    margin: 0 !important;
+    @media (max-width: 520px) {
+      padding: 7px 8px;
+      font-size: 14px;
+    }
+    &:hover{
+      background-color: cs.$nav_highlight;
+    }
+  }
+}
+
+.nav-dropdown2 {
+  float: left;
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  .nav-dropdown-btn2 {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 7px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    margin: 0;
+    width: 100%;
+    text-align: initial;
+    @media (max-width: 520px) {
+      padding: 7px 8px;
+      font-size: 14px;
+    }
+  }
+  &:hover .nav-dropdown-btn2 {
+    background-color: cs.$nav_highlight;
+  }
+  &:hover .nav-dropdown-content2 {
+    display: block;
+  }
+  
+  @media (min-width: 520px) {
+    ::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: cs.$nav_highlight;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: cs.$red;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: cs.$red;
+    }
+  }
+
+}
+
+.nav-dropdown-content2 {
+  display: none;
+  position: absolute;
+  align-items: flex-start;
+  background-color: cs.$nav_bg;
+  min-width: 180px;
+  max-width: 200px;
+  //white-space: nowrap;
+  //text-overflow: ellipsis;
+  box-shadow: 0 8px 16px 0 rgba(72, 72, 72, 0.2);
+  z-index: 2;
+  flex-direction: column;
+  max-height: 350px;
+  overflow-x: hidden;
+  @media (max-width: 520px) {
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+  a {
+    //overflow-x: hidden;
+    //white-space: nowrap;
+    //text-overflow: ellipsis;
+    float: none;
+    color: white;
+    padding: 7px 16px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    border-radius: 0 !important;
+    border: 0 !important;
+    @media (max-width: 520px) {
+      padding: 7px 8px;
+      font-size: 14px;
+    }
+    &:hover{
+      background-color: #2a2a2a;
+    }
+  }
+}

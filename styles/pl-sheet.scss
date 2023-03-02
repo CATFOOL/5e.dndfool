@@ -4,7 +4,7 @@ body{
   background-color: cs.$bg;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
   button{
     background-color: white;
   }
@@ -16,11 +16,12 @@ body{
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
+  margin: 15px 0;
 }
 
 #pl-sheet-header{
   display: flex;
-  width: 100%;
+  width: 95%;
   max-width: 1095px;
   align-items: center;
   justify-content: space-between;
@@ -30,6 +31,8 @@ body{
   }
 
 }
+
+/*#region pl-sheet-header*/
 
 #pl-sheet-characterIcon{
   width: 65px;
@@ -73,13 +76,21 @@ body{
   padding: 5px;
   color: white;
   font-weight: 700;
-  margin: 0 5px 0 5px;
+  margin: 5px 5px 0 5px;
+  transition: .2s ease-in-out;
+  &:hover{
+    background-color: #e10712;
+  }
   .fas{
     margin-right: 3px;
     //color: cs.$red;
   }
+  @media (max-width: 520px) {
+    margin-top: 10px;
+  }
 }
 
+/*#endregion*/
 
 #pl-sheet-quickInfo{
   display: flex;
@@ -89,11 +100,14 @@ body{
   flex-wrap: wrap;
 }
 
-/*#region abilities*/
+/*#region ability*/
 
 #pl-sheet-abilities{
   display: flex;
   margin: 5px 0 5px 0;
+  overflow: auto;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .pl-sheet-ability{
@@ -108,7 +122,11 @@ body{
   justify-content: space-between;
   padding: 5px;
   font-weight: 700;
-  margin: 0 5px 0 5px;
+  margin: 5px;
+  cursor: pointer;
+  @media (max-width: 520px) {
+    margin: 5px 5%;
+  }
 }
 
 .pl-sheet-ability .title{
@@ -179,7 +197,7 @@ body{
   align-items: center;
   justify-content: space-between;
   font-weight: 700;
-  margin: 0 5px 0 5px;
+  margin: 5px;
 }
 
 #pl-sheet-inspiration{
@@ -245,20 +263,9 @@ body{
   padding: 5px;
   flex-direction: row;
   font-weight: 700;
-  margin: 0 5px 0 5px;
+  margin: 5px;
   justify-content: space-around;
   position: relative;
-  /* Chrome, Safari, Edge, Opera */
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  /* Firefox */
-  input[type=number] {
-    -moz-appearance: textfield;
-  }
 }
 
 #pl-sheet-health-cal{
@@ -289,21 +296,30 @@ body{
   color: cs.$red;
 }
 
-#pl-sheet-health-cal-input{
-  width: 100%;
-  background: none rgb(255, 255, 255);
-  border: 1px solid rgb(221, 221, 221);
-  border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 8%) 0 1px 1px inset;
-  color: rgb(0, 0, 0);
-  padding: 3px;
-  transition: border 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s;
-  text-align: center;
-  &:focus{
-    border-color: rgb(36, 37, 39);
-    box-shadow: rgb(36 37 39 / 60%) 0 0 4px;
-    background-color: rgb(249, 249, 249);
-    outline: 0;
+body{
+  input[type=number]{
+    width: 100%;
+    background: none rgb(255, 255, 255);
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 5px;
+    box-shadow: rgb(0 0 0 / 8%) 0 1px 1px inset;
+    color: rgb(0, 0, 0);
+    padding: 2px;
+    transition: border 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s;
+    text-align: center;
+    -moz-appearance: textfield;
+    &:focus{
+      border-color: rgb(36, 37, 39);
+      box-shadow: rgb(36 37 39 / 60%) 0 0 4px;
+      background-color: rgb(249, 249, 249);
+      outline: 0;
+    }
+  }
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 }
 
@@ -331,24 +347,9 @@ body{
   width: 50px;
 }
 
-#pl-sheet-health-primary-current-num, #pl-sheet-health-primary-current-temp{
-  width: 100%;
-  background: none rgb(255, 255, 255);
-  border: 1px solid rgb(221, 221, 221);
-  border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 8%) 0 1px 1px inset;
-  color: rgb(0, 0, 0);
+#pl-sheet-health-primary-current-num, #pl-sheet-health-primary-temp-num{
   font-size: 20px;
   font-weight: 700;
-  padding: 2px;
-  transition: border 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s;
-  text-align: center;
-  &:focus{
-    border-color: rgb(36, 37, 39);
-    box-shadow: rgb(36 37 39 / 60%) 0 0 4px;
-    background-color: rgb(249, 249, 249);
-    outline: 0;
-  }
 }
 
 #pl-sheet-health-primary-mid-string{
@@ -423,7 +424,6 @@ body{
   display: flex;
   margin-left: 15px;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -432,6 +432,8 @@ body{
   align-items: flex-end;
   input {
     accent-color: cs.$red;
+    width: 20px;
+    height: 20px;
   }
 }
 /*#endregion */

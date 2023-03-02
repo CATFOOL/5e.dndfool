@@ -3,7 +3,7 @@ body {
   background-color: #252525;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
 }
 body button {
   background-color: white;
@@ -15,11 +15,12 @@ body button {
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
+  margin: 15px 0;
 }
 
 #pl-sheet-header {
   display: flex;
-  width: 100%;
+  width: 95%;
   max-width: 1095px;
   align-items: center;
   justify-content: space-between;
@@ -29,6 +30,7 @@ body button {
   display: flex;
 }
 
+/*#region pl-sheet-header*/
 #pl-sheet-characterIcon {
   width: 65px;
   height: 65px;
@@ -71,12 +73,22 @@ body button {
   padding: 5px;
   color: white;
   font-weight: 700;
-  margin: 0 5px 0 5px;
+  margin: 5px 5px 0 5px;
+  transition: 0.2s ease-in-out;
+}
+#pl-sheet-shortRest:hover, #pl-sheet-longRest:hover, #pl-sheet-build:hover {
+  background-color: #e10712;
 }
 #pl-sheet-shortRest .fas, #pl-sheet-longRest .fas, #pl-sheet-build .fas {
   margin-right: 3px;
 }
+@media (max-width: 520px) {
+  #pl-sheet-shortRest, #pl-sheet-longRest, #pl-sheet-build {
+    margin-top: 10px;
+  }
+}
 
+/*#endregion*/
 #pl-sheet-quickInfo {
   display: flex;
   width: 100%;
@@ -85,10 +97,13 @@ body button {
   flex-wrap: wrap;
 }
 
-/*#region abilities*/
+/*#region ability*/
 #pl-sheet-abilities {
   display: flex;
   margin: 5px 0 5px 0;
+  overflow: auto;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .pl-sheet-ability {
@@ -103,7 +118,13 @@ body button {
   justify-content: space-between;
   padding: 5px;
   font-weight: 700;
-  margin: 0 5px 0 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+@media (max-width: 520px) {
+  .pl-sheet-ability {
+    margin: 5px 5%;
+  }
 }
 
 .pl-sheet-ability .title {
@@ -171,7 +192,7 @@ body button {
   align-items: center;
   justify-content: space-between;
   font-weight: 700;
-  margin: 0 5px 0 5px;
+  margin: 5px;
 }
 
 #pl-sheet-inspiration {
@@ -236,20 +257,9 @@ body button {
   padding: 5px;
   flex-direction: row;
   font-weight: 700;
-  margin: 0 5px 0 5px;
+  margin: 5px;
   justify-content: space-around;
   position: relative;
-  /* Chrome, Safari, Edge, Opera */
-  /* Firefox */
-}
-#pl-sheet-health input::-webkit-outer-spin-button,
-#pl-sheet-health input::-webkit-inner-spin-button, #pl-sheet-deathSaving input::-webkit-outer-spin-button,
-#pl-sheet-deathSaving input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-#pl-sheet-health input[type=number], #pl-sheet-deathSaving input[type=number] {
-  -moz-appearance: textfield;
 }
 
 #pl-sheet-health-cal {
@@ -280,22 +290,31 @@ body button {
   color: #e10712;
 }
 
-#pl-sheet-health-cal-input {
+body {
+  /* Chrome, Safari, Edge, Opera */
+}
+body input[type=number] {
   width: 100%;
   background: none rgb(255, 255, 255);
   border: 1px solid rgb(221, 221, 221);
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.08) 0 1px 1px inset;
   color: rgb(0, 0, 0);
-  padding: 3px;
+  padding: 2px;
   transition: border 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s;
   text-align: center;
+  -moz-appearance: textfield;
 }
-#pl-sheet-health-cal-input:focus {
+body input[type=number]:focus {
   border-color: rgb(36, 37, 39);
   box-shadow: rgba(36, 37, 39, 0.6) 0 0 4px;
   background-color: rgb(249, 249, 249);
   outline: 0;
+}
+body input::-webkit-outer-spin-button,
+body input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 #pl-sheet-health-primary {
@@ -322,24 +341,9 @@ body button {
   width: 50px;
 }
 
-#pl-sheet-health-primary-current-num, #pl-sheet-health-primary-current-temp {
-  width: 100%;
-  background: none rgb(255, 255, 255);
-  border: 1px solid rgb(221, 221, 221);
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.08) 0 1px 1px inset;
-  color: rgb(0, 0, 0);
+#pl-sheet-health-primary-current-num, #pl-sheet-health-primary-temp-num {
   font-size: 20px;
   font-weight: 700;
-  padding: 2px;
-  transition: border 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s;
-  text-align: center;
-}
-#pl-sheet-health-primary-current-num:focus, #pl-sheet-health-primary-current-temp:focus {
-  border-color: rgb(36, 37, 39);
-  box-shadow: rgba(36, 37, 39, 0.6) 0 0 4px;
-  background-color: rgb(249, 249, 249);
-  outline: 0;
 }
 
 #pl-sheet-health-primary-mid-string {
@@ -413,7 +417,6 @@ body button {
   display: flex;
   margin-left: 15px;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -423,6 +426,8 @@ body button {
 }
 #pl-sheet-deathSaving-marker-success input, #pl-sheet-deathSaving-marker-fail input {
   accent-color: #e10712;
+  width: 20px;
+  height: 20px;
 }
 
 /*#endregion */

@@ -1,0 +1,79 @@
+@use "dnd-color-scheme" as cs;
+
+.view-content, #sidebar-ability-description {
+  .markdown-preview-view{
+    background-color: white;
+    color: black;
+  }
+  .mod-header{
+    display: none;
+  }
+  p{
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+  }
+  h1{
+    color: cs.$red;
+  }
+  h2{
+    color: cs.$red;
+    margin-block-start: 1.25em;
+    padding-top: 10px;
+    border-top: 2px solid lightgray;
+  }
+  h3{
+    color: cs.$red;
+    margin-block-start: 1.25em;
+    padding-bottom: 5px;
+    border-bottom: 2px solid cs.$red;
+  }
+  h4{
+    color: cs.$red;
+    margin-block-start: 1.25em;
+    margin-block-end: 0.5em;
+  }
+  h5{
+    margin-block-start: 1em;
+    margin-block-end: 0.4em;
+  }
+
+  td, th {
+    border: 0;
+    color: black;
+  }
+
+  tbody > tr:nth-child(odd) {
+    background-color: cs.$book_green !important;
+  }
+
+  div:has(> table) {
+    display: inline-block;
+    vertical-align: top;
+    table{
+      margin-block-start: 0;
+      margin-block-end: 0.5em;
+      margin-right: 10px;
+    }
+  }
+  blockquote{
+    padding: 10px;
+    border: 0;
+    background-color: cs.$book_green;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+  }
+  blockquote > :first-child {
+    margin-top: 0;
+  }
+  blockquote > :last-child {
+    margin-bottom: 0;
+  }
+  ul {
+    padding-inline-start: 2em;
+  }
+
+  center{
+    text-align: center;
+  }
+
+}

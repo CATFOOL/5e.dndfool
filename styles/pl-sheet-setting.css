@@ -1,0 +1,74 @@
+#pl-sheet-setting {
+  display: none;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 15px 0;
+  color: white;
+}
+
+#pl-sheet-setting-nav {
+  display: flex;
+  width: 100%;
+  max-width: 1095px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+#pl-sheet-setting-nav div {
+  cursor: pointer;
+  border: 1px solid #e10712;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: white;
+  font-weight: 700;
+  margin: 5px 5px 0 5px;
+  transition: 0.2s ease-in-out;
+}
+#pl-sheet-setting-nav div .fas {
+  margin-right: 3px;
+}
+#pl-sheet-setting-nav div:hover {
+  background-color: #e10712;
+}
+#pl-sheet-setting-nav .active {
+  background-color: #e10712;
+}
+
+#pl-sheet-setting .pl-sheet-setting-content {
+  display: flex;
+  width: 100%;
+  max-width: 1095px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+#pl-sheet-setting .pl-sheet-setting-content .pl-sheet-setting-content-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+  margin: 5px;
+}
+#pl-sheet-setting .pl-sheet-setting-content .pl-sheet-setting-content-item .pl-sheet-setting-content-item-label {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+#pl-sheet-setting .pl-sheet-setting-content .pl-sheet-setting-content-item .pl-sheet-setting-content-item-input {
+  border: 1px solid #e10712;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: white;
+  font-weight: 700;
+  margin: 5px 5px 0 5px;
+  transition: 0.2s ease-in-out;
+}
+#pl-sheet-setting .pl-sheet-setting-content .pl-sheet-setting-content-item .pl-sheet-setting-content-item-input:hover {
+  background-color: #e10712;
+}
+
+/*# sourceMappingURL=pl-sheet-setting.css.map */

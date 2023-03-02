@@ -1,0 +1,127 @@
+#sidebar {
+  display: none;
+  height: -webkit-fill-available;
+  width: -webkit-fill-available;
+  max-width: 350px;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  top: 50px;
+  background-color: white;
+  overflow-x: hidden;
+  transition: ease-in-out 0.2s;
+  flex-direction: column;
+  border: 2px solid #e10712;
+  border-radius: 5px;
+}
+@media (max-width: 520px) {
+  #sidebar {
+    top: 0;
+  }
+}
+
+#sidebar-controls {
+  display: flex;
+  line-height: 1;
+  justify-content: flex-start;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-bottom: 2px dashed #e10712;
+}
+
+#sidebar-controls a {
+  padding: 5px 5px 5px 5px;
+  text-decoration: none;
+  font-size: 30px;
+  color: #252525;
+  display: block;
+  transition: ease-in-out 0.2s;
+  cursor: pointer;
+}
+
+#sidebar-content {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  font-size: 13px;
+  overflow-y: auto;
+}
+
+#sidebar-ability-description > :first-child {
+  margin-top: 5px;
+}
+
+#sidebar-header {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#sidebar-header-mod {
+  font-size: 16px;
+  font-weight: normal;
+  margin-left: 5px;
+}
+
+#sidebar-ability-factors {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+#sidebar-ability-factors .sidebar-ability-factor {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+#sidebar-ability-factors .sidebar-ability-factor .sidebar-ability-factor-label {
+  width: 100%;
+  border: 1px solid #edeae8;
+  line-height: 1;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+}
+#sidebar-ability-factors .sidebar-ability-factor .sidebar-ability-factor-value {
+  background-color: #faf8f7;
+  border: 1px solid #edeae8;
+  border-left: 2px solid #d0cac5;
+  padding: 5px;
+  text-align: center;
+  width: 70px;
+}
+#sidebar-ability-factors .sidebar-ability-factor + .sidebar-ability-factor .sidebar-ability-factor-label {
+  border-top: 0;
+}
+#sidebar-ability-factors .sidebar-ability-factor + .sidebar-ability-factor .sidebar-ability-factor-value {
+  border-top: 0;
+}
+
+#sidebar-ability-fill-factors {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+}
+#sidebar-ability-fill-factors .sidebar-ability-factor {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 5px 0;
+}
+#sidebar-ability-fill-factors .sidebar-ability-factor .sidebar-ability-factor-label {
+  width: 100%;
+  line-height: 1;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+}
+#sidebar-ability-fill-factors .sidebar-ability-factor input {
+  width: 65px;
+  height: 25px;
+}
+
+#sidebar-ability-description {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eaeaea;
+}
+
+/*# sourceMappingURL=pl-sheet-sidebar.css.map */
