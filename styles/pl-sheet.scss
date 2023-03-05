@@ -77,9 +77,8 @@ body{
   color: white;
   font-weight: 700;
   margin: 5px 5px 0 5px;
-  transition: .2s ease-in-out;
   &:hover{
-    background-color: #e10712;
+    background-color: cs.$nav_bg;
   }
   .fas{
     margin-right: 3px;
@@ -198,6 +197,7 @@ body{
   justify-content: space-between;
   font-weight: 700;
   margin: 5px;
+  cursor: pointer;
 }
 
 #pl-sheet-inspiration{
@@ -227,6 +227,7 @@ body{
 #pl-sheet-inspiration .title2{
   margin: 5px 0 0 0;
   color: white;
+  cursor: pointer;
 }
 
 #pl-sheet-proficiency .modifier, #pl-sheet-speed .modifier{
@@ -243,7 +244,7 @@ body{
   content: "尺";
 }
 
-#pl-sheet-inspiration-icon-container i{
+#pl-sheet-inspiration-icon{
   display: flex;
   font-size: 30px;
   color: cs.$red;
@@ -266,6 +267,7 @@ body{
   margin: 5px;
   justify-content: space-around;
   position: relative;
+  cursor: pointer;
 }
 
 #pl-sheet-health-cal{
@@ -297,7 +299,7 @@ body{
 }
 
 body{
-  input[type=number]{
+  input[type=number], input[type=text]{
     width: 100%;
     background: none rgb(255, 255, 255);
     border: 1px solid rgb(221, 221, 221);
@@ -315,11 +317,22 @@ body{
       outline: 0;
     }
   }
+  input[type=text]{
+    text-align: left;
+  }
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+  select{
+    background: none rgb(255, 255, 255);
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 5px;
+    box-shadow: rgb(0 0 0 / 8%) 0 1px 1px inset;
+    padding: 4px;
+    width: 100%;
   }
 }
 
@@ -394,7 +407,6 @@ body{
   position: absolute;
   bottom: 5px;
   font-size: 16px;
-
 }
 
 .pl-sheet-health-deathSaving{
@@ -437,3 +449,7 @@ body{
   }
 }
 /*#endregion */
+
+.customised{
+  color: cs.$lightblue;
+}

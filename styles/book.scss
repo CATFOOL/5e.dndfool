@@ -1,6 +1,6 @@
 @use "dnd-color-scheme" as cs;
 
-.view-content, #sidebar-ability-description {
+.view-content, .bookContent {
   .markdown-preview-view{
     background-color: white;
     color: black;
@@ -75,5 +75,29 @@
   center{
     text-align: center;
   }
+}
 
+.view-content{
+  h4{
+    font-size: 18px;
+  }
+}
+
+.bookContent{
+  h5{
+    font-size: 13px;
+  }
+  table{
+    font-size: 12px;
+    border-collapse: collapse;
+    overflow-x: auto;
+    width: max-content;
+    th, td{
+      padding: 4px 8px;
+    }
+  }
+  .table-container{
+    overflow-x: auto;
+    width: 100%;
+  }
 }

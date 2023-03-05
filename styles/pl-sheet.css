@@ -74,10 +74,9 @@ body button {
   color: white;
   font-weight: 700;
   margin: 5px 5px 0 5px;
-  transition: 0.2s ease-in-out;
 }
 #pl-sheet-shortRest:hover, #pl-sheet-longRest:hover, #pl-sheet-build:hover {
-  background-color: #e10712;
+  background-color: #0e0e0e;
 }
 #pl-sheet-shortRest .fas, #pl-sheet-longRest .fas, #pl-sheet-build .fas {
   margin-right: 3px;
@@ -193,6 +192,7 @@ body button {
   justify-content: space-between;
   font-weight: 700;
   margin: 5px;
+  cursor: pointer;
 }
 
 #pl-sheet-inspiration {
@@ -222,6 +222,7 @@ body button {
 #pl-sheet-inspiration .title2 {
   margin: 5px 0 0 0;
   color: white;
+  cursor: pointer;
 }
 
 #pl-sheet-proficiency .modifier, #pl-sheet-speed .modifier {
@@ -238,7 +239,7 @@ body button {
   content: "尺";
 }
 
-#pl-sheet-inspiration-icon-container i {
+#pl-sheet-inspiration-icon {
   display: flex;
   font-size: 30px;
   color: #e10712;
@@ -260,6 +261,7 @@ body button {
   margin: 5px;
   justify-content: space-around;
   position: relative;
+  cursor: pointer;
 }
 
 #pl-sheet-health-cal {
@@ -293,7 +295,7 @@ body button {
 body {
   /* Chrome, Safari, Edge, Opera */
 }
-body input[type=number] {
+body input[type=number], body input[type=text] {
   width: 100%;
   background: none rgb(255, 255, 255);
   border: 1px solid rgb(221, 221, 221);
@@ -305,16 +307,27 @@ body input[type=number] {
   text-align: center;
   -moz-appearance: textfield;
 }
-body input[type=number]:focus {
+body input[type=number]:focus, body input[type=text]:focus {
   border-color: rgb(36, 37, 39);
   box-shadow: rgba(36, 37, 39, 0.6) 0 0 4px;
   background-color: rgb(249, 249, 249);
   outline: 0;
 }
+body input[type=text] {
+  text-align: left;
+}
 body input::-webkit-outer-spin-button,
 body input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+body select {
+  background: none rgb(255, 255, 255);
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0 1px 1px inset;
+  padding: 4px;
+  width: 100%;
 }
 
 #pl-sheet-health-primary {
@@ -431,5 +444,8 @@ body input::-webkit-inner-spin-button {
 }
 
 /*#endregion */
+.customised {
+  color: #1c9aef;
+}
 
 /*# sourceMappingURL=pl-sheet.css.map */

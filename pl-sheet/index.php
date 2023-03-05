@@ -1,94 +1,14 @@
 <html lang="en, cn">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <?php include $_SERVER['DOCUMENT_ROOT'] . "/comp/header.php"?>
     <title>角色卡</title>
-    <link rel="icon" type="image/x-icon" href="../img/dnd_fool_logo_black.ico">
-    <link rel="stylesheet" href="../styles/navbar.css">
-    <link rel="stylesheet" href="../styles/pl-sheet.css">
-    <link rel="stylesheet" href="../styles/book.css">
-    <link rel="stylesheet" href="../styles/pl-sheet-sidebar.css">
-    <link rel="stylesheet" href="../styles/pl-sheet-setting.css">
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
-    <script src="https://kit.fontawesome.com/33a4ff806b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="<?php echo CURRENT_ROOT?>/styles/pl-sheet.css">
+    <link rel="stylesheet" href="<?php echo CURRENT_ROOT?>/styles/pl-sheet-setting.css">
 </head>
+
 <body>
 
-<div class="navbar-container">
-    <div class="navbar_menu_button" onclick="navBar_menu_button()">
-        <i class='fas fa-bars'></i>
-    </div>
-    <div class="navbar">
-        <a>首页</a>
-        <div class="nav-dropdown">
-            <button class="nav-dropdown-btn">书籍 <i class="fa fa-caret-down"></i></button>
-            <div class="nav-dropdown-content">
-                <div class="nav-dropdown2">
-                    <button class="nav-dropdown-btn2">规则书 <i class="fa fa-caret-down"></i></button>
-                    <div class="nav-dropdown-content2">
-                        <a>魔邓肯出品：多元宇宙的怪物</a>
-                        <a>Careers</a>
-                        <a>Company</a>
-                        <a>Careers</a>
-                        <a>Company</a>
-                        <a>Careers</a>
-                        <a>Company</a>
-                        <a>Careers</a>
-                        <a>Company</a>
-                        <a>Careers</a>
-                        <a>Company</a>
-                        <a>Careers</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown2">
-                    <button class="nav-dropdown-btn2">冒险模组 <i class="fa fa-caret-down"></i></button>
-                    <div class="nav-dropdown-content2">
-                        <a>Dragonlance: Shadow of the Dragon Queen</a>
-                        <a>Careers</a>
-                        <a>Company</a>
-                        <a>Careers</a>
-                        <a>Company</a>
-                        <a>Careers</a>
-                        <a>Company</a>
-                        <a>Careers</a>
-                        <a>Company</a>
-                        <a>Careers</a>
-                        <a>Company</a>
-                        <a>Careers</a>
-                        <a>Careers</a>
-                        <a>Company</a>
-                        <a>Careers</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div tabindex="0" class="nav-dropdown">
-            <button class="nav-dropdown-btn">玩家选项 <i class="fa fa-caret-down"></i></button>
-            <div class="nav-dropdown-content">
-                <a>角色卡</a>
-                <a>职业</a>
-                <a>种族</a>
-                <a>背景</a>
-                <a>专长</a>
-                <a>动作</a>
-            </div>
-        </div>
-        <div tabindex="0" class="nav-dropdown">
-            <button class="nav-dropdown-btn">参考数据 <i class="fa fa-caret-down"></i></button>
-            <div class="nav-dropdown-content">
-                <a>法术</a>
-                <a>怪兽图鉴</a>
-                <a>状态&疾病</a>
-                <a>神祇</a>
-                <a>物品</a>
-                <a>语言</a>
-            </div>
-        </div>
-        <a>DM工具</a>
-
-    </div>
-</div>
-
+<?php include $_SERVER['DOCUMENT_ROOT'] . "/comp/nav.php"?>
 
 <div id="pl-sheet">
     <div id="pl-sheet-header">
@@ -116,61 +36,66 @@
     </div>
     <div id="pl-sheet-quickInfo" style="margin-top: 15px">
         <div id="pl-sheet-abilities">
-            <div id="pl-sheet-ability-STR" class="pl-sheet-ability" onclick="OpenAbilitySidebar(myCharacter, ability.STR)">
+            <div id="pl-sheet-ability-STR" class="pl-sheet-ability" onclick="OpenAbilitySidebar(ability.STR, myCharacter)">
                 <div class="title">力量</div>
                 <div id="pl-sheet-ability-STR-mod" class="modifier">+2</div>
                 <div id="pl-sheet-ability-STR-score" class="score">14</div>
             </div>
-            <div id="pl-sheet-ability-DEX" class="pl-sheet-ability" onclick="OpenAbilitySidebar(myCharacter, ability.DEX)">
+            <div id="pl-sheet-ability-DEX" class="pl-sheet-ability" onclick="OpenAbilitySidebar(ability.DEX, myCharacter)">
                 <div class="title">敏捷</div>
                 <div id="pl-sheet-ability-DEX-mod" class="modifier">+2</div>
                 <div id="pl-sheet-ability-DEX-score" class="score">14</div>
             </div>
-            <div id="pl-sheet-ability-CON" class="pl-sheet-ability" onclick="OpenAbilitySidebar(myCharacter, ability.CON)">
+            <div id="pl-sheet-ability-CON" class="pl-sheet-ability" onclick="OpenAbilitySidebar(ability.CON, myCharacter)">
                 <div class="title">体质</div>
                 <div id="pl-sheet-ability-CON-mod" class="modifier">+2</div>
                 <div id="pl-sheet-ability-CON-score" class="score">14</div>
             </div>
-            <div id="pl-sheet-ability-INT" class="pl-sheet-ability" onclick="OpenAbilitySidebar(myCharacter, ability.INT)">
+            <div id="pl-sheet-ability-INT" class="pl-sheet-ability" onclick="OpenAbilitySidebar(ability.INT, myCharacter)">
                 <div class="title">智力</div>
                 <div id="pl-sheet-ability-INT-mod" class="modifier">+2</div>
                 <div id="pl-sheet-ability-INT-score" class="score">14</div>
             </div>
-            <div id="pl-sheet-ability-WIS" class="pl-sheet-ability" onclick="OpenAbilitySidebar(myCharacter, ability.WIS)">
+            <div id="pl-sheet-ability-WIS" class="pl-sheet-ability" onclick="OpenAbilitySidebar(ability.WIS, myCharacter)">
                 <div class="title">感知</div>
                 <div id="pl-sheet-ability-WIS-mod" class="modifier">+2</div>
                 <div id="pl-sheet-ability-WIS-score" class="score">14</div>
             </div>
-            <div id="pl-sheet-ability-CHA" class="pl-sheet-ability" onclick="OpenAbilitySidebar(myCharacter, ability.CHA)">
+            <div id="pl-sheet-ability-CHA" class="pl-sheet-ability" onclick="OpenAbilitySidebar(ability.CHA, myCharacter)">
                 <div class="title">魅力</div>
                 <div id="pl-sheet-ability-CHA-mod" class="modifier">+2</div>
                 <div id="pl-sheet-ability-CHA-score" class="score">14</div>
             </div>
         </div>
         <div id="pl-sheet-quickInfo-right">
-            <div id="pl-sheet-proficiency">
+            <div id="pl-sheet-proficiency" onclick="OpenPlainSideBar(dataPath+'/abilities/proficiencyBonus.md')">
                 <div class="title">熟练</div>
                 <div id="pl-sheet-proficiencyBonus" class="modifier">+2</div>
                 <div class="title2">加值</div>
             </div>
-            <div id="pl-sheet-speed">
-                <div class="title">移动</div>
-                <div id="pl-sheet-speed-walking" class="modifier">30</div>
+            <div id="pl-sheet-speed" onclick="OpenSpeedSidebar(myCharacter)">
+                <div id="pl-sheet-speed-type" class="title">移动</div>
+                <div id="pl-sheet-speed-num" class="modifier">00</div>
                 <div class="title2">速度</div>
             </div>
             <div id="pl-sheet-inspiration">
                 <div id="pl-sheet-inspiration-icon-container" onclick=InspirationSwitch()>
-                <i class='fas fa-dice-d20' id="pl-sheet-inspiration-icon" style="opacity: 1"></i>
+                    <i class='fas fa-dice-d20' id="pl-sheet-inspiration-icon" style="opacity: 0"></i>
                 </div>
-                <div class="title2">激励骰</div>
+                <div class="title2" onclick="OpenPlainSideBar(dataPath+'/inspiration/inspiration.md')">
+                    激励骰
+                </div>
             </div>
-            <div id="pl-sheet-health">
-                <div id="pl-sheet-health-title">生命值</div>
+            <div id="pl-sheet-health" onclick="OpenHealthSidebar(myCharacter)">
+                <div id="pl-sheet-health-title">
+                    生命值
+                </div>
                 <!---->
-                <div id="pl-sheet-health-cal">
+                <!--suppress JSDeprecatedSymbols -->
+                <div id="pl-sheet-health-cal" onclick="event.stopPropagation();">
                     <button id="pl-sheet-health-cal-heal"
                             onclick="changeHealth(myCharacter, document.getElementById('pl-sheet-health-cal-input').value, damageTypes.Healing)">回复</button>
-                    <label for="pl-sheet-health-cal-input"></label><input type="number" min="0" id="pl-sheet-health-cal-input">
+                    <label for="pl-sheet-health-cal-input"></label><input type="number" min="0" id="pl-sheet-health-cal-input" onchange="if(parseInt(this.value) < 0) this.value = 0">
                     <button id="pl-sheet-health-cal-damage"
                             onclick="changeHealth(myCharacter, document.getElementById('pl-sheet-health-cal-input').value, damageTypes.True)">伤害</button>
                 </div>
@@ -179,8 +104,10 @@
                     <div id="pl-sheet-health-primary-current">
                         <div class="title">当前</div>
                         <label for="pl-sheet-health-primary-current-num"></label>
-                        <input type="number" min="0" id="pl-sheet-health-primary-current-num" placeholder="--" value="998" onblur="DetectingDeath(this.value)"
-                               name="pl-sheet-health-primary-current-num">
+                        <!--suppress JSDeprecatedSymbols -->
+                        <input type="number" min="0" id="pl-sheet-health-primary-current-num" placeholder="--" value="998" name="pl-sheet-health-primary-current-num"
+                               onchange="DetectingDeath(this.value); myCharacter.healthState.current = this.value;"
+                               onclick="event.stopPropagation();">
                     </div>
                     <div id="pl-sheet-health-primary-mid">
                         <div class="title" style="color: white">/</div>
@@ -194,9 +121,14 @@
                 <div id="pl-sheet-health-temp">
                     <div class="title">临时</div>
                     <label for="pl-sheet-health-primary-temp-num"></label>
-                    <input type="number" min="0" id="pl-sheet-health-primary-temp-num" value="999" placeholder="--" name="pl-sheet-health-primary-temp-num">
+                    <!--suppress JSDeprecatedSymbols -->
+                    <input type="number" min="0" id="pl-sheet-health-primary-temp-num" value="999" placeholder="--" name="pl-sheet-health-primary-temp-num"
+                           onblur="myCharacter.healthState.temp = this.value;" onclick="event.stopPropagation();">
                 </div>
-                <button class="pl-sheet-health-deathSaving" onclick="HealthDeathSavingSwitch()" style="display: none"><i class="fas fa-skull-crossbones"></i></button>
+                <!--suppress JSDeprecatedSymbols -->
+                <button class="pl-sheet-health-deathSaving" onclick="HealthDeathSavingSwitch(); event.stopPropagation();" style="display: none">
+                    <i class="fas fa-skull-crossbones"></i>
+                </button>
             </div>
             <div id="pl-sheet-deathSaving" style="display: none">
                 <div id="pl-sheet-deathSaving-title">死亡豁免</div>
@@ -221,7 +153,10 @@
                         <input class="checkbox" type="checkbox" id="pl-sheet-deathSaving-marker-fail3" onclick="GroupCheckboxes(this)" onchange="FailDeathSaving()">
                     </div>
                 </div>
-                <button class="pl-sheet-health-deathSaving" onclick="HealthDeathSavingSwitch()" style="display: none"><i class="fas fa-heartbeat"></i></button>
+                <!--suppress JSDeprecatedSymbols -->
+                <button class="pl-sheet-health-deathSaving" onclick="HealthDeathSavingSwitch(); event.stopPropagation();" style="display: none">
+                    <i class="fas fa-heartbeat"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -232,14 +167,7 @@
     </div>
 </div>
 
-<div id="sidebar">
-    <div id="sidebar-controls">
-        <a class="closebtn" onclick="CloseSidebar()">&times;</a>
-    </div>
-    <div id="sidebar-content">
 
-    </div>
-</div>
 
 <div id="pl-sheet-setting">
     <div id="pl-sheet-setting-nav">
@@ -255,63 +183,21 @@
     </div>
 </div>
 
-
+<?php include $_SERVER['DOCUMENT_ROOT'] . "/comp/sidebar/sidebar.php"?>
 
 </body>
 </html>
 
-<script src="../styles/navbar.js"></script>
+
 <script src="./pl-data.js"></script>
-<script src="sidebar/sidebar.js"></script>
-<script src="sidebar/abilitySidebar.js"></script>
-<script src="sidebar/healthSidebar.js"></script>
 
 <script>
-    let sidebarPath = "./sidebar/";
-
     LoadPlData(pl_data);
-
-    function GroupCheckboxes(element){
-        element.checked = !element.checked;
-        let checkboxes = element.parentElement.getElementsByClassName("checkbox");
-        let checkboxes_array = Array.prototype.slice.call(checkboxes);
-        let onclickIndex = checkboxes_array.indexOf(element) + 1;
-        let totalChecked = 0;
-        for (const checkbox of checkboxes) {
-            if (checkbox.checked){
-                totalChecked++;
-            }
-        }
-        if (onclickIndex > totalChecked){
-            CheckFirst(checkboxes);
-        }
-        else{
-            UncheckLast(checkboxes);
-        }
-    }
-
-    function CheckFirst(checkboxes){
-        for (const checkbox of checkboxes) {
-            if (!checkbox.checked){
-                checkbox.checked = true;
-                break;
-            }
-        }
-    }
-
-    function UncheckLast(checkboxes){
-        for (let i = checkboxes.length-1; i >= 0; i--) {
-            if (checkboxes[i].checked){
-                checkboxes[i].checked = false;
-                break;
-            }
-        }
-    }
 
     function DetectingDeath(currentHealth){
         currentHealth = parseInt(currentHealth)
         const health_deathSaving_icons = document.getElementsByClassName("pl-sheet-health-deathSaving")
-        if (currentHealth <= 0){
+        if (currentHealth <= 0 || isNaN(currentHealth)){
             HealthDeathSavingSwitch()
             for (const health_deathSaving_icon of health_deathSaving_icons) {
                 health_deathSaving_icon.style.display = "flex";
@@ -368,10 +254,5 @@
         const pl_sheet = document.getElementById("pl-sheet")
         pl_sheet.style.display = "none";
 
-    }
-
-    function CloseSidebar(){
-        const sidebar = document.getElementById("sidebar")
-        sidebar.style.display = "none";
     }
 </script>

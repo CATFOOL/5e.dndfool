@@ -25,13 +25,12 @@
   color: white;
   font-weight: 700;
   margin: 5px 5px 0 5px;
-  transition: 0.2s ease-in-out;
 }
 #pl-sheet-setting-nav div .fas {
   margin-right: 3px;
 }
 #pl-sheet-setting-nav div:hover {
-  background-color: #e10712;
+  background-color: #0e0e0e;
 }
 #pl-sheet-setting-nav .active {
   background-color: #e10712;

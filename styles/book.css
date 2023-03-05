@@ -1,72 +1,93 @@
-.view-content .markdown-preview-view, #sidebar-ability-description .markdown-preview-view {
+.view-content .markdown-preview-view, .bookContent .markdown-preview-view {
   background-color: white;
   color: black;
 }
-.view-content .mod-header, #sidebar-ability-description .mod-header {
+.view-content .mod-header, .bookContent .mod-header {
   display: none;
 }
-.view-content p, #sidebar-ability-description p {
+.view-content p, .bookContent p {
   margin-block-start: 0.5em;
   margin-block-end: 0.5em;
 }
-.view-content h1, #sidebar-ability-description h1 {
+.view-content h1, .bookContent h1 {
   color: #e10712;
 }
-.view-content h2, #sidebar-ability-description h2 {
+.view-content h2, .bookContent h2 {
   color: #e10712;
   margin-block-start: 1.25em;
   padding-top: 10px;
   border-top: 2px solid lightgray;
 }
-.view-content h3, #sidebar-ability-description h3 {
+.view-content h3, .bookContent h3 {
   color: #e10712;
   margin-block-start: 1.25em;
   padding-bottom: 5px;
   border-bottom: 2px solid #e10712;
 }
-.view-content h4, #sidebar-ability-description h4 {
+.view-content h4, .bookContent h4 {
   color: #e10712;
   margin-block-start: 1.25em;
   margin-block-end: 0.5em;
 }
-.view-content h5, #sidebar-ability-description h5 {
+.view-content h5, .bookContent h5 {
   margin-block-start: 1em;
   margin-block-end: 0.4em;
 }
-.view-content td, .view-content th, #sidebar-ability-description td, #sidebar-ability-description th {
+.view-content td, .view-content th, .bookContent td, .bookContent th {
   border: 0;
   color: black;
 }
-.view-content tbody > tr:nth-child(odd), #sidebar-ability-description tbody > tr:nth-child(odd) {
+.view-content tbody > tr:nth-child(odd), .bookContent tbody > tr:nth-child(odd) {
   background-color: #e0e5c2 !important;
 }
-.view-content div:has(> table), #sidebar-ability-description div:has(> table) {
+.view-content div:has(> table), .bookContent div:has(> table) {
   display: inline-block;
   vertical-align: top;
 }
-.view-content div:has(> table) table, #sidebar-ability-description div:has(> table) table {
+.view-content div:has(> table) table, .bookContent div:has(> table) table {
   margin-block-start: 0;
   margin-block-end: 0.5em;
   margin-right: 10px;
 }
-.view-content blockquote, #sidebar-ability-description blockquote {
+.view-content blockquote, .bookContent blockquote {
   padding: 10px;
   border: 0;
   background-color: #e0e5c2;
   margin-inline-start: 0;
   margin-inline-end: 0;
 }
-.view-content blockquote > :first-child, #sidebar-ability-description blockquote > :first-child {
+.view-content blockquote > :first-child, .bookContent blockquote > :first-child {
   margin-top: 0;
 }
-.view-content blockquote > :last-child, #sidebar-ability-description blockquote > :last-child {
+.view-content blockquote > :last-child, .bookContent blockquote > :last-child {
   margin-bottom: 0;
 }
-.view-content ul, #sidebar-ability-description ul {
+.view-content ul, .bookContent ul {
   padding-inline-start: 2em;
 }
-.view-content center, #sidebar-ability-description center {
+.view-content center, .bookContent center {
   text-align: center;
+}
+
+.view-content h4 {
+  font-size: 18px;
+}
+
+.bookContent h5 {
+  font-size: 13px;
+}
+.bookContent table {
+  font-size: 12px;
+  border-collapse: collapse;
+  overflow-x: auto;
+  width: max-content;
+}
+.bookContent table th, .bookContent table td {
+  padding: 4px 8px;
+}
+.bookContent .table-container {
+  overflow-x: auto;
+  width: 100%;
 }
 
 /*# sourceMappingURL=book.css.map */

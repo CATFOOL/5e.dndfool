@@ -17,22 +17,65 @@ const damageTypes = {
 }
 
 
+let healthSidebarTemplate = undefined;
+function OpenHealthSidebar(data=null) {
+
+    //let mdPath = dataPath + "/abilities/" + abilityName.en + ".md/";
+    if (data == null){
+        //OpenPlainSideBar(mdPath);
+        //return;
+    }
+
+    GetSidebarTemplate(healthSidebarTemplate, sidebarPath + "/healthSidebar/healthSidebarTemplate.php");
+
+    //GetSidebarDescription(mdPath);
+    let mod = document.getElementById("sidebar-factor-maxHealth-mod");
+    SetCustomise(mod, data.healthState, "maxMod", true);
+    let override = document.getElementById("sidebar-factor-maxHealth-override");
+    SetCustomise(override, data.healthState, "maxOverride");
+
+    OpenSidebar();
+}
+
+
 function changeHealth(data, value, type){
     if (isNaN(parseInt(value))) return;
 
+    value = parseInt(value);
+    let firstZero = false;
     if (type === damageTypes.Healing){
         data.healthState.current += parseInt(value);
+        value = 0;
     }
     else {
-        data.healthState.current -= parseInt(value);
+        if (data.healthState.temp > 0) {
+            if (data.healthState.temp >= value) {
+                data.healthState.temp -= value;
+                value = 0;
+            }
+            else {
+                value -= data.healthState.temp;
+                data.healthState.temp = 0;
+            }
+        }
+        if (data.healthState.current >= value) {
+            data.healthState.current -= value;
+            value = 0;
+        }
+        else {
+            if (data.healthState.current > 0) firstZero = true;
+            value -= data.healthState.current;
+            data.healthState.current = 0;
+        }
     }
-
-    if (data.healthState.current > data.healthState.max){
-        data.healthState.current = data.healthState.max;
-    }
-    if (data.healthState.current < 0){
-        data.healthState.current = 0;
-    }
-
     DetectingDeath(data.healthState.current);
+    if (data.healthState.current === 0){
+        if (value >= data.healthState.max){
+            SetGroupCheckboxes(document.getElementById("pl-sheet-deathSaving-marker-fail"), 3);
+        }
+        else if (value > 0 && !firstZero){
+            CheckFirst(document.getElementById("pl-sheet-deathSaving-marker-fail"));
+        }
+    }
+
 }

@@ -26,17 +26,16 @@
     color: white;
     font-weight: 700;
     margin: 5px 5px 0 5px;
-    transition: .2s ease-in-out;
     .fas{
       margin-right: 3px;
     }
     &:hover{
-        background-color: #e10712;
+      background-color: cs.$nav_bg;
     }
   }
 
   .active{
-    background-color: #e10712;
+    background-color: cs.$red;
   }
 }
 

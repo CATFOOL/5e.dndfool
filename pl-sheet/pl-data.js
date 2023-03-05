@@ -7,13 +7,19 @@ function ScoreToModifier(score){
     return Math.floor((score-10)/2);
 }
 
+function ToInt(value, defaultValue, ignoreZero=false){
+    if (isNaN(parseInt(value))) return defaultValue;
+    else if (parseInt(value) === 0 && ignoreZero) return defaultValue;
+    else return parseInt(value);
+}
+
 const ability = {
-    STR: "str",
-    DEX: "dex",
-    CON: "con",
-    INT: "int",
-    WIS: "wis",
-    CHA: "cha",
+    STR: {short: "str", en: "strength", cn: "力量"},
+    DEX: {short: "dex", en: "dexterity", cn: "敏捷"},
+    CON: {short: "con", en: "constitution", cn: "体质"},
+    INT: {short: "int", en: "intelligence", cn: "智力"},
+    WIS: {short: "wis", en: "wisdom", cn: "感知"},
+    CHA: {short: "cha", en: "charisma", cn: "魅力"}
 }
 
 class Ability{
@@ -40,7 +46,7 @@ class Ability{
     }
 
     set base(newValue){
-        this._abilityData.base = newValue;
+        this._abilityData.base = ToInt(newValue, 0);
         this.Refresh();
     }
 
@@ -49,7 +55,7 @@ class Ability{
     }
 
     set racial(newValue){
-        this._abilityData.racial = newValue;
+        this._abilityData.racial = ToInt(newValue, 0);
         this.Refresh();
     }
 
@@ -58,7 +64,7 @@ class Ability{
     }
 
     set improvement(newValue){
-        this._abilityData.improvement = newValue;
+        this._abilityData.improvement = ToInt(newValue, 0);
         this.Refresh();
     }
 
@@ -67,7 +73,7 @@ class Ability{
     }
 
     set misc(newValue){
-        this._abilityData.misc = newValue;
+        this._abilityData.misc = ToInt(newValue, 0);
         this.Refresh();
     }
 
@@ -76,7 +82,7 @@ class Ability{
     }
 
     set stacking(newValue){
-        this._abilityData.stacking = newValue;
+        this._abilityData.stacking = ToInt(newValue, 0);
         this.Refresh();
     }
 
@@ -85,7 +91,7 @@ class Ability{
     }
 
     set min(newValue){
-        this._abilityData.min = newValue;
+        this._abilityData.min = ToInt(newValue, 0);
         this.Refresh();
     }
 
@@ -94,7 +100,7 @@ class Ability{
     }
 
     set other(newValue){
-        this._abilityData.other = newValue;
+        this._abilityData.other = ToInt(newValue, null, true);
         this.Refresh();
     }
 
@@ -103,7 +109,7 @@ class Ability{
     }
 
     set override(newValue){
-        this._abilityData.override = newValue;
+        this._abilityData.override = ToInt(newValue, null);
         this.Refresh();
     }
 
@@ -117,51 +123,105 @@ class Ability{
         score = Math.min(score, 20);
         score += this._abilityData.stacking;
         score = Math.max(score, this._abilityData.min);
-        if (this._abilityData.other === null) this._abilityData.other = 0;
+        if (this._abilityData.other === null) return score;
         score += this._abilityData.other;
-        return score
+        return score;
     }
 
     Refresh(){
-        document.getElementById("pl-sheet-ability-" + this._abilityName.toUpperCase() + "-mod").textContent = this.modString;
-        document.getElementById("pl-sheet-ability-" + this._abilityName.toUpperCase() + "-score").textContent = this.scoreString;
+        const mod = document.getElementById("pl-sheet-ability-" + this._abilityName.short.toUpperCase() + "-mod");
+        const score = document.getElementById("pl-sheet-ability-" + this._abilityName.short.toUpperCase() + "-score");
+        mod.textContent = this.modString;
+        score.textContent = this.scoreString;
+        if (this._abilityData.override !== null || (this._abilityData.other !== null && this._abilityData.other !== 0)) {
+            mod.classList.add("customised");
+            score.classList.add("customised");
+        }
+        else{
+            mod.classList.remove("customised");
+            score.classList.remove("customised");
+        }
     }
 
 }
 
-class MovementSpeed{
+const speed = {
+    walking: {en: "walking", cn: "步行"},
+    climbing: {en: "climbing", cn: "攀爬"},
+    swimming: {en: "swimming", cn: "游泳"},
+    flying: {en: "flying", cn: "飞行"},
+    burrowing: {en: "burrowing", cn: "挖掘"},
+}
+
+class Speed{
     constructor(speedName, speedData) {
         this._speedName = speedName;
         this._speedData = speedData;
+        this._isDisplaying = false;
+        this.Refresh();
+    }
+
+    get base(){
+        return this._speedData.base;
+    }
+
+    set base(newValue){
+        this._speedData.base = ToInt(newValue, 0);
+        this.Refresh();
+    }
+
+    get override(){
+        return this._speedData.override;
+    }
+
+    set override(newValue){
+        this._speedData.override = ToInt(newValue, null);
         this.Refresh();
     }
 
     get speed(){
-        return this._speedData.speed;
-    }
-
-    set speed(new_Value){
-        this._speedData.speed = new_Value;
-        this.Refresh();
+        if (this._speedData.override !== null) return this._speedData.override;
+        return this._speedData.base;
     }
 
     get speedString(){
-        return this._speedData.speed.toString();
+        if (this.speed === null) return "0";
+        return this.speed.toString();
     }
 
     get notes(){
+        if (this._speedData.notes === null) return "";
         return this._speedData.notes;
     }
 
-    set notes(new_Value){
-        this._speedData.notes = new_Value;
+    set notes(newValue){
+        this._speedData.notes = newValue;
+        this.Refresh();
+    }
+
+    get isDisplaying(){
+        return this._isDisplaying;
+    }
+
+    set isDisplaying(new_Value){
+        this._isDisplaying = new_Value;
         this.Refresh();
     }
 
     Refresh(){
-        const pl_speed_block = document.getElementById("pl-sheet-speed-" + this._speedName.toLowerCase());
-        if (pl_speed_block !== null)
-            pl_speed_block.textContent = this.speedString;
+        if (!this._isDisplaying) return;
+        const num = document.getElementById("pl-sheet-speed-num");
+        const title = document.getElementById("pl-sheet-speed-type");
+        num.textContent = this.speedString;
+        title.textContent = this._speedName.cn;
+        if (this._speedData.override !== null) {
+            num.classList.add("customised");
+            title.classList.add("customised");
+        }
+        else{
+            num.classList.remove("customised");
+            title.classList.remove("customised");
+        }
     }
 }
 
@@ -172,46 +232,86 @@ class HealthState{
         this.maxMod = this._healthState.maxMod;
         this.maxOverride = this._healthState.maxOverride;
         this.temp = this._healthState.temp;
+        this.hitPointRecord = this._healthState.hitPointRecord;
     }
     get current(){
         return this._healthState.current;
     }
 
-    set current(new_Value){
-        this._healthState.current = new_Value;
+    set current(newValue){
+        this._healthState.current = ToInt(newValue, 0);
+        if (ToInt(newValue, null) < 0) this._healthState.current = 0;
+        if (ToInt(newValue, null) > this.max) this._healthState.current = this.max;
         document.getElementById("pl-sheet-health-primary-current-num").value = this.current;
+    }
+
+    get hitPointRecord(){
+        return this._healthState.hitPointRecord;
+    }
+
+    set hitPointRecord(newValue){
+        this._healthState.hitPointRecord = newValue;
+        this.max = this.CalHitRecord(newValue);
     }
 
     get max(){
         if (this._healthState.maxOverride !== null) return this._healthState.maxOverride;
+        if (this._healthState.max + this._healthState.maxMod < 0) return 0;
         return this._healthState.max + this._healthState.maxMod;
+    }
+
+    set max(newValue){
+        this._healthState.max = ToInt(newValue, 0);
+        if (ToInt(newValue, null) < 0) this._healthState.max = 0;
+        this.RefreshMax();
     }
 
     get maxMod(){
         return this._healthState.maxMod;
     }
 
-    set maxMod(new_Value){
-        this._healthState.maxMod = new_Value;
-        document.getElementById("pl-sheet-health-primary-max-num").textContent = this.max;
+    set maxMod(newValue){
+        this._healthState.maxMod = ToInt(newValue, null, true);
+        this.RefreshMax();
     }
 
     get maxOverride(){
         return this._healthState.maxOverride;
     }
 
-    set maxOverride(new_Value){
-        this._healthState.maxOverride = new_Value;
-        document.getElementById("pl-sheet-health-primary-max-num").textContent = this.max;
+    set maxOverride(newValue){
+        this._healthState.maxOverride = ToInt(newValue, null);
+        if (ToInt(newValue, null) < 0) this._healthState.maxOverride = 0;
+        this.RefreshMax();
     }
 
     get temp(){
         return this._healthState.temp;
     }
 
-    set temp(new_Value){
-        this._healthState.temp = new_Value;
+    set temp(newValue){
+        this._healthState.temp = ToInt(newValue, 0, false);
+        if (ToInt(newValue, null) < 0) this._healthState.temp = 0;
         document.getElementById("pl-sheet-health-primary-temp-num").value = this.temp;
+    }
+
+    CalHitRecord(hitPointRecord){
+        let sum = 0;
+        for (const hitPoint of hitPointRecord) {
+            sum += hitPoint;
+        }
+        return sum;
+    }
+
+    RefreshMax(){
+        const max = document.getElementById("pl-sheet-health-primary-max-num");
+        max.textContent = this.max;
+        if (this._healthState.maxOverride !== null || (this._healthState.maxMod !== null && this._healthState.maxMod !== 0)) {
+            max.classList.add("customised");
+        }
+        else{
+            max.classList.remove("customised");
+        }
     }
 }
 
@@ -227,7 +327,12 @@ class PlData{
         this.wis = new Ability(ability.WIS, this._pl_data.abilities.wis);
         this.cha = new Ability(ability.CHA, this._pl_data.abilities.cha);
         this.proficiencyBonus = this._pl_data.proficiencyBonus;
-        this.walking = new MovementSpeed("walking", this._pl_data.movementSpeed.walking)
+        this.walking = new Speed(speed.walking, this._pl_data.speed.walking)
+        this.climbing = new Speed(speed.climbing, this._pl_data.speed.climbing)
+        this.swimming = new Speed(speed.swimming, this._pl_data.speed.swimming)
+        this.flying = new Speed(speed.flying, this._pl_data.speed.flying)
+        this.burrowing = new Speed(speed.burrowing, this._pl_data.speed.burrowing)
+        this.speedDisplaying = this._pl_data.speed.displaying;
         this.inspiration = this._pl_data.inspiration;
         this.healthState = new HealthState(this._pl_data.healthState);
     }
@@ -269,6 +374,19 @@ class PlData{
         document.getElementById("pl-sheet-proficiencyBonus").textContent = SignNum(this.proficiencyBonus);
     }
 
+    get speedDisplaying(){
+        return this._pl_data.speed.displaying;
+    }
+
+    set speedDisplaying(newValue){
+        this._pl_data.speed.displaying = newValue;
+        this.walking.isDisplaying = newValue === speed.walking;
+        this.climbing.isDisplaying = newValue === speed.climbing;
+        this.swimming.isDisplaying = newValue === speed.swimming;
+        this.flying.isDisplaying = newValue === speed.flying;
+        this.burrowing.isDisplaying = newValue === speed.burrowing;
+    }
+
     get inspiration(){
         return this._pl_data.inspiration;
     }
@@ -307,7 +425,7 @@ let pl_data = {
             "misc": 0, // 杂项、专长
             "stacking": 0, // 魔法物品加值，可突破20上限
             "min": 0, // 最小值
-            "other": 0, // 其它修正
+            "other": null, // 其它修正
             "override": null, // 覆盖值
         },
         "dex": {
@@ -362,9 +480,31 @@ let pl_data = {
         }
     },
     "proficiencyBonus": 3,
-    "movementSpeed": {
+    "speed": {
+        "displaying": speed.walking,
         "walking": {
-            "speed": 30,
+            "base": 30,
+            "override": null,
+            "notes": "",
+        },
+        "climbing": {
+            "base": null,
+            "override": null,
+            "notes": "",
+        },
+        "swimming": {
+            "base": null,
+            "override": null,
+            "notes": "",
+        },
+        "flying": {
+            "base": null,
+            "override": null,
+            "notes": "",
+        },
+        "burrowing": {
+            "base": null,
+            "override": null,
             "notes": "",
         },
     },
@@ -372,7 +512,8 @@ let pl_data = {
     "healthState": {
         "current": 9,
         "max": 43,
-        "maxMod": 0,
+        "hitPointRecord": [8, 9, 12],
+        "maxMod": null,
         "maxOverride": null,
         "temp": 0,
     }

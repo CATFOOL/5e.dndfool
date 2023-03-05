@@ -7,5 +7,7 @@
     <orderEntry type="library" name="jquery-3.6.0" level="application" />
     <orderEntry type="library" name="jquery-3.6.3" level="application" />
     <orderEntry type="library" name="showdown" level="application" />
+    <orderEntry type="library" name="hammer.js" level="application" />
+    <orderEntry type="library" name="animate.css" level="application" />
   </component>
 </module>
